@@ -5,7 +5,7 @@ from src.controller.main_controller import MainWindow
 def run():
     app = qtw.QApplication(sys.argv)
     app.setApplicationName("Homogeneous Transformation - Calculator")
-    app.setWindowIcon(qtg.QIcon(""))
+    app.setWindowIcon(qtg.QIcon("./icon.ico"))
     app.setApplicationVersion("1.0.1")
     mw = MainWindow()
     mw.show()
