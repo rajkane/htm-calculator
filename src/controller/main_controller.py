@@ -53,15 +53,11 @@ class MainWindow(qtw.QMainWindow, Ui_MainWindow):
         if k.key() == qtc.Qt.Key.Key_Escape:
             self.__message()
             if self.box == qtw.QMessageBox.Yes:
-                self.close()
-                k.accept()
-            else:
-                k.ignore()
+                sys.exit(qtw.QApplication.exit())
 
     def closeEvent(self, e):
         self.__message()
         if self.box == qtw.QMessageBox.Yes:
-            self.close()
             e.accept()
         else:
             e.ignore()
