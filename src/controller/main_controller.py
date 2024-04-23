@@ -38,3 +38,5 @@ class MainWindow(qtw.QMainWindow, Ui_MainWindow):
         self.dsb_x_result.setValue(self.htm.get_result()[0])
         self.dsb_y_result.setValue(self.htm.get_result()[1])
         self.dsb_z_result.setValue(self.htm.get_result()[2])
+
+
