@@ -7,6 +7,7 @@ class MainWindow(qtw.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self.box = None
         self.htm = HomogeneousTransformation()
         self.__actions()
 
@@ -39,4 +40,28 @@ class MainWindow(qtw.QMainWindow, Ui_MainWindow):
         self.dsb_y_result.setValue(self.htm.get_result()[1])
         self.dsb_z_result.setValue(self.htm.get_result()[2])
 
+    def __message(self):
+        if not isinstance(self.box, qtw.QMessageBox):
+            self.box = qtw.QMessageBox.question(
+                self,
+                "Quit",
+                "Are you sure?",
+                qtw.QMessageBox.No | qtw.QMessageBox.Yes,
+            )
 
+    def keyPressEvent(self, k):
+        if k.key() == qtc.Qt.Key.Key_Escape:
+            self.__message()
+            if self.box == qtw.QMessageBox.Yes:
+                self.close()
+                k.accept()
+            else:
+                k.ignore()
+
+    def closeEvent(self, e):
+        self.__message()
+        if self.box == qtw.QMessageBox.Yes:
+            self.close()
+            e.accept()
+        else:
+            e.ignore()
